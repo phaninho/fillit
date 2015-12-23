@@ -1,4 +1,5 @@
 NAME = fillit
+NAME_TEST = fillit_test
 CC = clang
 
 FLAGS = -Wall
@@ -7,29 +8,38 @@ FLAGS += -Werror
 
 LIB = build/libft.a 
 
-SRC = gnl.c
+SRC += check_valid.c
+SRC += checkbuff.c
+SRC += fill_buff.c
+SRC += main.c
 SRC := $(addprefix srcs/, $(SRC))
 
 TEST = lst.c
 TEST += main.c
 TEST += print.c
+TEST += gnl.c
 TEST := $(addprefix tests/, $(TEST))
 
-OBJ = $(SRC:.c=.o)
-OBJ += $(TEST:.c=.o)
+OBJ_SRC = $(SRC:.c=.o)
+OBJ_TEST += $(TEST:.c=.o)
 
 GREEN = "\033[1;92m"
 NONE = "\033[0m"
 
 .SILENT:
 
-all: $(OBJ)
+all: $(OBJ_SRC)
 	echo "-- Creating $(NAME) ..."
 	$(CC) $(FLAGS) $^ $(LIB) -o bin/$(NAME)
 	echo $(GREEN)"Done."$(NONE)
 
 %.o:%.c
 	@$(CC) $(FLAGS) -I ./includes/ -c $< -o $@
+
+test: $(OBJ_TEST)
+	echo "-- Creating  $(NAME_TEST)..."
+	$(CC) $(FLAGS) $^ $(LIB) -o bin/$(NAME_TEST)
+	echo $(GREEN)"Done."$(NONE)
 
 clean:
 	echo "-- Cleaning .o files ..."

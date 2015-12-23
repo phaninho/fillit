@@ -6,14 +6,14 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 17:45:57 by stmartin          #+#    #+#             */
-/*   Updated: 2015/12/22 22:20:11 by stmartin         ###   ########.fr       */
+/*   Updated: 2015/12/23 19:06:56 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBIT_H
 # define LIBIT_H
 
-# include "../libft/libft.h"
+# include "libft.h"
 # include <fcntl.h>
 
 typedef struct		s_coord

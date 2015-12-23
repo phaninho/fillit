@@ -6,12 +6,11 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 18:34:25 by stmartin          #+#    #+#             */
-/*   Updated: 2015/12/23 14:28:37 by stmartin         ###   ########.fr       */
+/*   Updated: 2015/12/23 19:38:46 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libit.h"
-#include <stdio.h>
 
 int		main(int ac, char **av)
 {
