@@ -6,12 +6,12 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 16:28:40 by stmartin          #+#    #+#             */
-/*   Updated: 2015/12/23 19:39:19 by stmartin         ###   ########.fr       */
+/*   Updated: 2015/12/24 13:36:45 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libit.h"
-#include <stdio.h>
+
 int		check_valid(char *buff)
 {
 	int	i;

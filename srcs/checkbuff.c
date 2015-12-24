@@ -6,23 +6,21 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 17:47:54 by stmartin          #+#    #+#             */
-/*   Updated: 2015/12/23 19:39:27 by stmartin         ###   ########.fr       */
+/*   Updated: 2015/12/24 13:37:19 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libit.h"
-#include <stdio.h>
+
 int		checkbuff(char *buff)
 {
 	int			i;
 	int			j;
 	int			l;
-	int			div;
 
 	i = 0;
 	j = 0;
 	l = 0;
-	div = 1;
 	while (buff && buff[l])
 	{
 		if ((buff[l] == '.' && i < 4) || (buff[l] == '#' && i < 4))

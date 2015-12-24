@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 18:34:25 by stmartin          #+#    #+#             */
-/*   Updated: 2015/12/23 19:38:46 by stmartin         ###   ########.fr       */
+/*   Updated: 2015/12/24 13:36:09 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		main(int ac, char **av)
 	int			i;
 	char		*tmp;
 //	char		**final_tet;
-//	t_coord		coord[4][26];
+	t_coord		**coord;
 	
 	i = 0;
 	if (ac == 2 && (fd = open(av[1], O_RDONLY)) != -1)
@@ -33,6 +33,10 @@ int		main(int ac, char **av)
 			if ((ft_strlen(tmp) == 20 && buff[i] =='\0') || 
 					(ft_strlen(tmp) == 21 && buff[i] != '\0'))
 				check = check_valid(tmp);
+			if (check == 1)
+			{
+				coord = add_coord(buff, 0, 0, 0);
+			}
 			else
 				check = 0;
 		}
