@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 16:44:20 by stmartin          #+#    #+#             */
-/*   Updated: 2015/12/24 13:39:04 by stmartin         ###   ########.fr       */
+/*   Updated: 2015/12/24 14:00:49 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,8 @@ t_coord		**add_coord(char *buff, int i, int x, int y)
 	coord[(ft_strlen(buff) + 1) / 21] = NULL;
 	while (i < (ft_strlen(buff) + 1) / 21)
 	{
-			if (!(coord[i] = (int*)malloc(sizeof(int) * 5)))
+			if (!(coord[i] = (t_coord*)malloc(sizeof(t_coord) * 4)))
 				return (NULL);
-			coord[i][4] = '\0';
 			i++;
 	}
 	i = 0;
