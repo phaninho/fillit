@@ -169,5 +169,6 @@ int		main(int ac, char **av)
 		return (-1);
 	}
 	/* print_bloc(tetris); */
+	/* print_bloc(tetris); */
 	return (0);
 }
