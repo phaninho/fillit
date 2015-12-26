@@ -15,17 +15,22 @@
 t_tetris	*create_form(void)
 {
 	t_tetris	*form;
+	static int	nbr = 0;
 
+	nbr++;
 	if (!(form = (t_tetris *)malloc(sizeof(t_tetris))))
 		return (NULL);
 	ft_memset(form, 0, sizeof(t_tetris));
+	form->next = NULL;
 	return (form);
 }
 
 void		add_form(t_tetris **tetris, t_tetris *new_form)
 {
 	t_tetris	*start;
+	int		i;
 
+	i	= 0;
 	if (!tetris)
 		return ;
 	if (!*tetris)
@@ -34,7 +39,10 @@ void		add_form(t_tetris **tetris, t_tetris *new_form)
 	{
 		start = *tetris;
 		while (*tetris && (*tetris)->next)
+		{
 			*tetris = (*tetris)->next;
+			i++;
+		}
 		(*tetris)->next = new_form;
 		*tetris = start;
 	}
@@ -44,18 +52,16 @@ void	print_bloc(t_tetris *tetris)
 {
 	int		i;
 
-	i = 0;
 	while (tetris)
 	{
-		ft_putendl("-- TETRIMINOS -- ");
+		i = 0;
 		while (i < 4)
 		{
 			printf("[ x = %d | y = %d ]\n", tetris->coord[i].x,
 					tetris->coord[i].y);
 			i++;
 		}
-		ft_putendl("-- END --");
-		i = 0;
+		ft_putendl("");
 		tetris = tetris->next;
 	}
 }
