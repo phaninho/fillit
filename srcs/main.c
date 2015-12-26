@@ -20,7 +20,6 @@ int		main(int ac, char **av)
 	int			i;
 	char		*tmp;
 //	char		**final_tet;
-	t_coord		**coord;
 	
 	i = 0;
 	if (ac == 2 && (fd = open(av[1], O_RDONLY)) != -1)
@@ -37,7 +36,7 @@ int		main(int ac, char **av)
 				check = 0;
 		}
 		if (check == 1)
-			coord = add_coord(buff, 0, 0, 0);
+			add_coord(buff, 0, 0, 0);
 		else
 		{
 			ft_putstr("Error\n");
@@ -49,4 +48,5 @@ int		main(int ac, char **av)
 		ft_putstr("Error\n");
 		return (0);
 	}
+	return (0);
 }
