@@ -6,12 +6,12 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 18:34:25 by stmartin          #+#    #+#             */
-/*   Updated: 2015/12/26 17:35:49 by stmartin         ###   ########.fr       */
+/*   Updated: 2015/12/26 18:08:19 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libit.h"
-#include <stdio.h>
+
 int		main(int ac, char **av)
 {
 	int			fd;
@@ -37,20 +37,12 @@ int		main(int ac, char **av)
 				check = 0;
 		}
 		if (check == 1)
-		{
 			coord = add_coord(buff, 0, 0, 0);
-			ft_putstr("good map\n");
-			ft_putstr(buff);
-		}
 		else
 		{
-			ft_putstr("bad map\n");
-			ft_putstr(buff);
+			ft_putstr("Error\n");
 			return (0);
 		}
-		
-			printf("x = %d et y = %d", coord[0][1].x, coord[0][1].y);
-		return (0);
 	}
 	else
 	{
