@@ -1,10 +1,11 @@
 NAME = fillit
 NAME_TEST = fillit_test
-CC = clang
+CC = gcc
 
 FLAGS = -Wall
 FLAGS += -Wextra
 FLAGS += -Werror
+FLAGS += -g
 
 LIB = build/libft.a 
 
@@ -43,7 +44,7 @@ test: $(OBJ_TEST)
 
 clean:
 	echo "-- Cleaning .o files ..."
-	/bin/rm -f $(OBJ)
+	/bin/rm -f $(OBJ_SRC) $(OBJ_TEST)
 	echo $(GREEN)"Done."$(NONE)
 
 fclean: clean
