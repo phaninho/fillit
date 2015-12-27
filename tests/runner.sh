@@ -11,8 +11,8 @@ do
 	then
 		str1=`$tests $FILE`
 		str2=`$srcs $FILE`
-		echo "JP: $str1"
-		echo "STEPH: $str2"
+		# echo "JP: $str1"
+		# echo "STEPH: $str2"
 		echo "$FILE: \c"
 		if [  "$str1" = "$str2" ]
 		then
