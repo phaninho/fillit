@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 18:34:25 by stmartin          #+#    #+#             */
-/*   Updated: 2015/12/26 18:08:19 by stmartin         ###   ########.fr       */
+/*   Updated: 2015/12/27 20:02:48 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ int		main(int ac, char **av)
 {
 	int			fd;
 	char		*buff;
-	int			check;
 	int			i;
+	int			check;
 	char		*tmp;
-//	char		**final_tet;
+	t_coord		**coord;
 	
 	i = 0;
 	if (ac == 2 && (fd = open(av[1], O_RDONLY)) != -1)
@@ -36,7 +36,12 @@ int		main(int ac, char **av)
 				check = 0;
 		}
 		if (check == 1)
-			add_coord(buff, 0, 0, 0);
+		{
+			coord = add_coord(buff, 0, 0, 0);
+			check = check_diez(coord, 0, 0, 0);
+		}
+		if (check == 1)
+			return (1);
 		else
 		{
 			ft_putstr("Error\n");
@@ -48,5 +53,4 @@ int		main(int ac, char **av)
 		ft_putstr("Error\n");
 		return (0);
 	}
-	return (0);
 }

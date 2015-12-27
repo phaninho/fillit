@@ -1,6 +1,6 @@
 NAME = fillit
 NAME_TEST = fillit_test
-CC = gcc
+CC = clang
 
 FLAGS = -Wall
 FLAGS += -Wextra
@@ -12,6 +12,8 @@ LIB = build/libft.a
 SRC += check_valid.c
 SRC += checkbuff.c
 SRC += fill_buff.c
+SRC += add_coord.c
+SRC += check_diez.c
 SRC += main.c
 SRC := $(addprefix srcs/, $(SRC))
 
@@ -44,7 +46,7 @@ test: $(OBJ_TEST)
 
 clean:
 	echo "-- Cleaning .o files ..."
-	/bin/rm -f $(OBJ_SRC) $(OBJ_TEST)
+	/bin/rm -f $(OBJ)
 	echo $(GREEN)"Done."$(NONE)
 
 fclean: clean
