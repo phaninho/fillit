@@ -44,13 +44,13 @@ int		main(int ac, char **av)
 			return (1);
 		else
 		{
-			ft_putstr("Error\n");
+			ft_putstr("error\n");
 			return (0);
 		}
 	}
 	else
 	{
-		ft_putstr("Error\n");
+		ft_putstr("error\n");
 		return (0);
 	}
 }
