@@ -48,13 +48,13 @@ int		main(int ac, char **av)
 		}
 		else
 		{
-			ft_putstr("Error\n");
+			ft_putstr("error\n");
 			return (0);
 		}
 	}
 	else
 	{
-		ft_putstr("Error\n");
+		ft_putstr("error\n");
 		return (0);
 	}
 }
