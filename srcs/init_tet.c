@@ -1,29 +1,64 @@
 #include "libit.h"
+#include <stdio.h>
 
-t_coord		**init_tet(t_coord **coord, int x, int y)
+int			check_spacex(t_coord *coord)
 {
-	int	space;
+	int		y;
+	int		spacex;
 
-	space = 0;
-	while (space != 1)
+	spacex = 0;
+	y = 0;
+	while (y < 4)
 	{
-		while (y < 4 && space < 1)
+		if (coord[y].x == 0)
+			spacex++;
+		y++;
+	}
+	return (spacex);
+}
+
+int			check_spacey(t_coord *coord)
+{
+	int		y;
+	int		spacey;
+
+	spacey = 0;
+	y = 0;
+	while (y < 4)
+	{
+		if (coord[y].y == 0)
+			spacey++;
+		y++;
+	}
+	return (spacey);
+}
+
+t_coord		*init_tet(t_coord *coord, int y)
+{
+	int	spacex;
+	int	spacey;
+
+	spacex = check_spacex(coord);
+	spacey = check_spacey(coord);
+	y = 0;
+	while (spacex < 1)
+	{
+		while (y != 4)
 		{
-			coord[x][y].x = coord[x][y].x - 1;
-			if (coord[x][y].x == 0)
-				space++;
+			coord[y].x = coord[y].x - 1;
+			if (coord[y].x == 0)
+				spacex++;
 			y++;
 		}
 	}
 		y = 0;
-		space = 0;
-	while (space != 1)
+	while (spacey < 1)
 	{
 		while (y < 4)
 		{
-			coord[x][y].y = coord[x][y].y - 1;
-			if (coord[x][y].y == 0)
-				space++;
+			coord[y].y = coord[y].y - 1;
+			if (coord[y].y == 0)
+				spacey++;
 			y++;
 		}
 	}

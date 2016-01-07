@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 18:34:25 by stmartin          #+#    #+#             */
-/*   Updated: 2015/12/27 20:02:48 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/01/07 17:48:54 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ int		main(int ac, char **av)
 	int			check;
 	char		*tmp;
 	t_coord		**coord;
-	
+	int			x;
+
 	i = 0;
+	x = 0;
 	if (ac == 2 && (fd = open(av[1], O_RDONLY)) != -1)
 	{
 		buff = fill_buff(fd);
@@ -42,8 +44,16 @@ int		main(int ac, char **av)
 		}
 		if (check == 1)
 		{
-			coord = init_tet(coord, 0, 0);
-			printf("x = [%d] y = [%d]\n", coord[0][0].x, coord[0][0].y);
+			while (coord[x] != NULL)
+			{
+				coord[x] = init_tet(coord[x], 0);
+				printf("tet nb %d\n", x + 1);
+				printf("x = [%d] y = [%d]\n", coord[x][0].x, coord[x][0].y);
+				printf("x = [%d] y = [%d]\n", coord[x][1].x, coord[x][1].y);
+				printf("x = [%d] y = [%d]\n", coord[x][2].x, coord[x][2].y);
+				printf("x = [%d] y = [%d]\n", coord[x][3].x, coord[x][3].y);
+				x++;
+			}
 			return (1);
 		}
 		else
