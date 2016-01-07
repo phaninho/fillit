@@ -28,4 +28,5 @@ int					check_valid(char *buff);
 t_coord				**add_coord(char *buff, size_t i, int x, int y);
 char				*fill_buff(int fd);
 int					check_diez(t_coord **coord, int x, int y, int valid);
+t_coord				**init_tet(t_coord **coord, int x, int y);
 #endif

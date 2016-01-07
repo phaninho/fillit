@@ -14,6 +14,7 @@ SRC += checkbuff.c
 SRC += fill_buff.c
 SRC += add_coord.c
 SRC += check_diez.c
+SRC += init_tet.c
 SRC += main.c
 SRC := $(addprefix srcs/, $(SRC))
 
@@ -46,7 +47,7 @@ test: $(OBJ_TEST)
 
 clean:
 	echo "-- Cleaning .o files ..."
-	/bin/rm -f $(OBJ)
+	/bin/rm -f $(OBJ_SRC)
 	echo $(GREEN)"Done."$(NONE)
 
 fclean: clean
