@@ -12,38 +12,67 @@
 
 #include "libit.h"
 
+int		first_check(t_coord **coord, int x, int y)
+{
+	int	valid;
+
+	valid = 0;
+	if (y == 0 && coord[x][y].y == coord[x][y + 3].y && (coord[x][y].x - coord[x][y + 3].x == 1 || coord[x][y].x - coord[x][y + 3].x == -1))
+		valid++;
+	if (y == 3 && coord[x][y].y == coord[x][y - 3].y && (coord[x][y].x - coord[x][y - 3].x == 1 || coord[x][y].x - coord[x][y - 3].x == -1))
+		valid++;
+	if (x == 0 && coord[x][y].x == coord[x][y + 3].x && (coord[x][y].y - coord[x][y + 3].y == 1 || coord[x][y].y - coord[x][y + 3].y == -1))
+		valid++;
+	if (x == 3 && coord[x][y].x == coord[x][y - 3].x && (coord[x][y].y - coord[x][y - 3].y == 1 || coord[x][y].y - coord[x][y - 3].y == -1))
+		valid++;
+	return (valid);
+}
+
+int		second_check(t_coord **coord, int x, int y)
+{
+	int	valid;
+
+	valid = 0;
+	if (coord[x][y].y == coord[x][y + 1].y && (coord[x][y].x -
+				coord[x][y + 1].x == 1 || coord[x][y].x - coord[x][y + 1].x == -1))
+		valid++;
+	if (coord[x][y].y == coord[x][y - 1].y && (coord[x][y].x -
+				coord[x][y - 1].x == 1 || coord[x][y].x - coord[x][y - 1].x == -1))
+		valid++;
+	if (coord[x][y].x == coord[x][y + 1].x && (coord[x][y].y -
+				coord[x][y + 1].y == 1 || coord[x][y].y - coord[x][y + 1].y == -1))
+		valid++;
+	if (coord[x][y].x == coord[x][y - 1].x && (coord[x][y].y -
+				coord[x][y - 1].y == 1 || coord[x][y].y - coord[x][y -  1].y == -1))
+		valid++;
+	return (valid);
+}
+
+int		last_check(t_coord **coord, int x, int y)
+{
+	int	valid;
+
+	valid = 0;
+	if (y < 2 && coord[x][y].y == coord[x][y + 2].y && (coord[x][y].x - coord[x][y + 2].x == 1 || coord[x][y].x - coord[x][y + 2].x == -1))
+		valid++;
+	if (y < 2 && coord[x][y].x == coord[x][y + 2].x && (coord[x][y].y - coord[x][y + 2].y == 1 || coord[x][y].y - coord[x][y + 2].y == -1))
+		valid++;
+	if (y > 1  && coord[x][y].y == coord[x][y - 2].y && (coord[x][y].x - coord[x][y - 2].x == 1 || coord[x][y].x - coord[x][y - 2].x == -1))
+		valid++;
+	if (y > 1 && coord[x][y].x == coord[x][y - 2].x && (coord[x][y].y - coord[x][y - 2].y == 1 || coord[x][y].y - coord[x][y - 2].y == -1))
+		valid++;
+	return (valid);
+}
 int		check_diez(t_coord **coord, int x, int y, int valid)
 {
+	int	rsl;
+
+	rsl = 0;
 	while (coord[x] != NULL)
 	{
-		if (y == 0 && coord[x][y].y == coord[x][y + 3].y && (coord[x][y].x - coord[x][y + 3].x == 1 || coord[x][y].x - coord[x][y + 3].x == -1))
-			valid++;
-		if (y == 3 && coord[x][y].y == coord[x][y - 3].y && (coord[x][y].x - coord[x][y - 3].x == 1 || coord[x][y].x - coord[x][y - 3].x == -1))
-			valid++;
-		if (x == 0 && coord[x][y].x == coord[x][y + 3].x && (coord[x][y].y - coord[x][y + 3].y == 1 || coord[x][y].y - coord[x][y + 3].y == -1))
-			valid++;
-		if (x == 3 && coord[x][y].x == coord[x][y - 3].x && (coord[x][y].y - coord[x][y - 3].y == 1 || coord[x][y].y - coord[x][y - 3].y == -1))
-			valid++;
-		if (coord[x][y].y == coord[x][y + 1].y && (coord[x][y].x -
-				coord[x][y + 1].x == 1 || coord[x][y].x - coord[x][y + 1].x == -1))
-			valid++;
-		if (coord[x][y].y == coord[x][y - 1].y && (coord[x][y].x -
-				coord[x][y - 1].x == 1 || coord[x][y].x - coord[x][y - 1].x == -1))
-			valid++;
-		if (coord[x][y].x == coord[x][y + 1].x && (coord[x][y].y -
-				coord[x][y + 1].y == 1 || coord[x][y].y - coord[x][y + 1].y == -1))
-			valid++;
-		if (coord[x][y].x == coord[x][y - 1].x && (coord[x][y].y -
-				coord[x][y - 1].y == 1 || coord[x][y].y - coord[x][y -  1].y == -1))
-			valid++;
-		if (y < 2 && coord[x][y].y == coord[x][y + 2].y && (coord[x][y].x - coord[x][y + 2].x == 1 || coord[x][y].x - coord[x][y + 2].x == -1))
-			valid++;
-		if (y < 2 && coord[x][y].x == coord[x][y + 2].x && (coord[x][y].y - coord[x][y + 2].y == 1 || coord[x][y].y - coord[x][y + 2].y == -1))
-			valid++;
-		if (y > 1  && coord[x][y].y == coord[x][y - 2].y && (coord[x][y].x - coord[x][y - 2].x == 1 || coord[x][y].x - coord[x][y - 2].x == -1))
-			valid++;
-		if (y > 1 && coord[x][y].x == coord[x][y - 2].x && (coord[x][y].y - coord[x][y - 2].y == 1 || coord[x][y].y - coord[x][y - 2].y == -1))
-			valid++;
+		valid = first_check(coord, x, y) + valid;
+		valid = second_check(coord, x, y) + valid;
+		valid = last_check(coord, x, y) + valid;
 		y++;
 		if (y == 4)
 		{

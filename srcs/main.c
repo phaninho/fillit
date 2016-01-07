@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "libit.h"
-
+#include <stdio.h>
 int		main(int ac, char **av)
 {
 	int			fd;
@@ -41,7 +41,11 @@ int		main(int ac, char **av)
 			check = check_diez(coord, 0, 0, 0);
 		}
 		if (check == 1)
+		{
+			coord = init_tet(coord, 0, 0);
+			printf("x = [%d] y = [%d]\n", coord[0][0].x, coord[0][0].y);
 			return (1);
+		}
 		else
 		{
 			ft_putstr("Error\n");
