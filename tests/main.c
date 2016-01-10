@@ -104,7 +104,7 @@ void	nbr_blocs(t_tetris **new_form, t_def *form, char *buffer)
 	form->nbr_blocs += i;
 }
 
-static void	check(t_tetris **tetris, t_def *form, char *buffer)
+static void	check(t_tetris **tetris, t_def *form, char *buffer, int create)
 {
 	static	t_tetris *new_form = NULL;
 
@@ -126,10 +126,95 @@ static void	check(t_tetris **tetris, t_def *form, char *buffer)
 		add_form(tetris, new_form);
 }
 
+int		get_minx(t_tetris *tetris, int mode)
+{
+	int		i;
+	int		min;
+
+	i = 0;
+	min = 10;
+	while (i < 4)
+	{
+		if (tetris->coord[i].x < min)
+			if ((mode != -1 && tetris->coord[i].y == mode) || mode == -1)
+				min = tetris->coord[i].x;
+		i++;
+	}
+	return (min);
+}
+
+int		get_miny(t_tetris *tetris)
+{
+	int		i;
+	int		min;
+
+	i = 1;
+	min = tetris->coord[0].y;
+	while (i < 4)
+	{
+		if (tetris->coord[i].y < min)
+			min = tetris->coord[i].y;
+		i++;
+	}
+	return (min);
+}
+
+int		blk_in_line(t_tetris *tetris, int line)
+{
+	int		i;
+	int		nbr;
+
+	i = 0;
+	nbr = 0;
+	while (i < 4)
+	{
+		if (tetris->coord[i].y == line)
+			nbr++;
+		i++;
+	}
+	return (nbr);
+}
+
+void	reduc_coord(t_tetris *tetris)
+{
+	int		i;
+	int		min;
+
+	i = 0;
+	if ((min = get_minx(tetris, -1)) != 0)
+	{
+		while (i < 4)
+		{
+			tetris->coord[i].x -= min;
+			tetris->coord[i].y -= min;
+			i++;
+		}
+	}
+	i = 0;
+	if ((min = get_miny(tetris)) != 0)
+	{
+		while (i < 4)
+		{
+			tetris->coord[i].y -= min;
+			i++;
+		}
+	}
+}
+
+void	clear_coord(t_tetris *tetris)
+{
+	while (tetris)
+	{
+		reduc_coord(tetris);
+		tetris = tetris->next;
+	}
+}
+
 int		main(int ac, char **av)
 {
 	int			fd;
 	int			ret;
+	int			create;
 	char		*buffer;
 	t_def		form;
 	t_tetris	*tetris;
@@ -137,6 +222,7 @@ int		main(int ac, char **av)
 
 	buffer = NULL;
 	tetris = NULL;
+	create = 1;
 	step = 0;
 	if (ac != 2 || ((fd = open(av[1], O_RDONLY)) == -1))
 	{
@@ -153,7 +239,10 @@ int		main(int ac, char **av)
 			return (-1);
 		}
 		if (form.row != 4)
-			check(&tetris, &form, buffer);
+		{
+			check(&tetris, &form, buffer, create);
+			create++;
+		}
 		if (form.row + 1 == 5)
 		{
 			form.status = 0;
@@ -169,6 +258,8 @@ int		main(int ac, char **av)
 		return (-1);
 	}
 	/* print_bloc(tetris); */
+	clear_coord(tetris);
 	/* print_bloc(tetris); */
+	solver(tetris);
 	return (0);
 }

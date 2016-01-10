@@ -34,7 +34,10 @@ void		add_form(t_tetris **tetris, t_tetris *new_form)
 	if (!tetris)
 		return ;
 	if (!*tetris)
+	{
 		*tetris = new_form;
+		(*tetris)->size = 1;
+	}
 	else
 	{
 		start = *tetris;
