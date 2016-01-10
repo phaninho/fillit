@@ -15,6 +15,7 @@ SRC += fill_buff.c
 SRC += add_coord.c
 SRC += check_diez.c
 SRC += init_tet.c
+SRC += add_element.c
 SRC += main.c
 SRC := $(addprefix srcs/, $(SRC))
 
