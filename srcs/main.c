@@ -21,8 +21,7 @@ int		main(int ac, char **av)
 	char		*tmp;
 	t_coord		**coord;
 	int			x;
-	t_map		*tetra;
-
+	int		**tetra;
 	i = 0;
 	x = 0;
 	if (ac == 2 && (fd = open(av[1], O_RDONLY)) != -1)
@@ -53,13 +52,15 @@ int		main(int ac, char **av)
 				printf("x = [%d] y = [%d]\n", coord[x][1].x, coord[x][1].y);
 				printf("x = [%d] y = [%d]\n", coord[x][2].x, coord[x][2].y);
 				printf("x = [%d] y = [%d]\n", coord[x][3].x, coord[x][3].y);
+				tetra = add_element(coord[x]);
+				printf("tetra = [%d %d]\n", tetra[x][0], tetra[x][1]);
 				x++;
 			}
-			tetra = add_element(coord, 0, 0, 0);
+			
 			i = 0;
 			while (tetra[i])
 			{
-				printf("i = %d [%d, %d]\n",i , tetra[i].nb, tetra[i].start);
+				printf("i = %d [%d %d]\n",i, tetra[i][0], tetra[i][1]);
 				i++;
 			}
 			return (1);

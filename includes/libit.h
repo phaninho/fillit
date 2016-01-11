@@ -37,5 +37,5 @@ t_coord				**add_coord(char *buff, size_t i, int x, int y);
 char				*fill_buff(int fd);
 int					check_diez(t_coord **coord, int x, int y, int valid);
 t_coord				*init_tet(t_coord *coord, int y);
-t_map				*add_element(t_coord **cord, int nb, int x, int y);
+int				**add_element(t_coord *coord);
 #endif

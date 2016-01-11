@@ -23,7 +23,7 @@ int		blk_in_line(t_coord *coord, int line)
 	{
 		if (coord[i].x == line)
 			nbr++;
-		printf ("deb coord = %d et line = %d nbr = %d\n", coord[i].y, line, nbr);
+		printf ("coord = %d et line = %d nbr = %d\n", coord[i].x, line, nbr);
 		i++;
 	}
 	return (nbr);
@@ -38,9 +38,9 @@ int		get_minx(t_coord *coord, int mode)
 	min = 10;
 	while (i < 4)
 	{
-		if (coord[i].x < min)
-			if ((mode != -1 && coord[i].y == mode) || mode == -1)
-				min = coord[i].x;
+		if (coord[i].y < min)
+			if ((mode != -1 && coord[i].x == mode) || mode == -1)
+				min = coord[i].y;
 		i++;
 	}
 	return (min);
