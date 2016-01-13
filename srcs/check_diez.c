@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/27 15:39:15 by stmartin          #+#    #+#             */
-/*   Updated: 2015/12/28 20:44:04 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/01/11 21:07:22 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int		check_diez(t_coord **coord, int x, int y, int valid)
 	int	rsl;
 
 	rsl = 0;
-	while (coord[x] != NULL)
+	while (coord && coord[x] != NULL)
 	{
 		valid = first_check(coord, x, y) + valid;
 		valid = second_check(coord, x, y) + valid;

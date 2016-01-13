@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/08 16:12:42 by stmartin          #+#    #+#             */
-/*   Updated: 2016/01/08 16:12:46 by stmartin         ###   ########.fr       */
+/*   Created: 2016/01/08 16:10:18 by stmartin          #+#    #+#             */
+/*   Updated: 2016/01/08 16:37:23 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libit.h"
-#include <stdio.h>
 
 int			check_spacex(t_coord *coord)
 {

@@ -6,12 +6,12 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 18:34:25 by stmartin          #+#    #+#             */
-/*   Updated: 2016/01/13 16:28:08 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/01/13 17:55:09 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libit.h"
-#include <stdio.h>
+
 int		main(int ac, char **av)
 {
 	int			fd;
@@ -57,6 +57,7 @@ int		main(int ac, char **av)
 			while (coord && coord[x])
 			{
 				tetra[x] = add_element(coord[x]);
+				join_tetra(tetra[x]);
 				x++;
 			}
 			return (1);
