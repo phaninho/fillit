@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/10 16:17:26 by stmartin          #+#    #+#             */
-/*   Updated: 2016/01/10 22:17:05 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/01/13 16:18:15 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int		blk_in_line(t_coord *coord, int line)
 	{
 		if (coord[i].x == line)
 			nbr++;
-		printf ("coord = %d et line = %d nbr = %d\n", coord[i].x, line, nbr);
 		i++;
 	}
 	return (nbr);

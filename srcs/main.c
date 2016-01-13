@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 18:34:25 by stmartin          #+#    #+#             */
-/*   Updated: 2016/01/10 20:51:55 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/01/13 16:28:08 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int		main(int ac, char **av)
 	char		*tmp;
 	t_coord		**coord;
 	int			x;
-	int		**tetra;
+	int		***tetra;
+
 	i = 0;
 	x = 0;
 	if (ac == 2 && (fd = open(av[1], O_RDONLY)) != -1)
@@ -44,24 +45,19 @@ int		main(int ac, char **av)
 		}
 		if (check == 1)
 		{
-			while (coord[x] != NULL)
+			while (coord && coord[x])
 			{
 				coord[x] = init_tet(coord[x], 0);
-				printf("tet nb %d\n", x + 1);
-				printf("x = [%d] y = [%d]\n", coord[x][0].x, coord[x][0].y);
-				printf("x = [%d] y = [%d]\n", coord[x][1].x, coord[x][1].y);
-				printf("x = [%d] y = [%d]\n", coord[x][2].x, coord[x][2].y);
-				printf("x = [%d] y = [%d]\n", coord[x][3].x, coord[x][3].y);
-				tetra = add_element(coord[x]);
-				printf("tetra = [%d %d]\n", tetra[x][0], tetra[x][1]);
 				x++;
 			}
-			
-			i = 0;
-			while (tetra[i])
+			if (!(tetra = (int ***)malloc(sizeof(int **) * (x + 1))))
+				return 0;
+			tetra[x] = 0;
+			x = 0;
+			while (coord && coord[x])
 			{
-				printf("i = %d [%d %d]\n",i, tetra[i][0], tetra[i][1]);
-				i++;
+				tetra[x] = add_element(coord[x]);
+				x++;
 			}
 			return (1);
 		}
