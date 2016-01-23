@@ -62,9 +62,11 @@ t_coord		*init_tet(t_coord *coord, int y)
 				spacex++;
 			y++;
 		}
+		y = 0;
 	}
-	printf("HERE1.1\n");
+	printf("HERE1.2\n");
 	y = 0;
+	printf("spacex: %d - spacey: %d\n", spacex,spacey);
 	while (spacey < 1)
 	{
 		while (y < 4)
@@ -74,7 +76,8 @@ t_coord		*init_tet(t_coord *coord, int y)
 				spacey++;
 			y++;
 		}
+		y = 0;
 	}
-	printf("HERE1.1\n");
+	printf("HERE1.3\n");
 	return (coord);
 }
