@@ -6,7 +6,7 @@
 /*   By: jmaccion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 14:57:18 by jmaccion          #+#    #+#             */
-/*   Updated: 2016/01/20 18:54:38 by jmaccion         ###   ########.fr       */
+/*   Updated: 2016/01/23 15:31:02 by jmaccion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,10 @@ int		check_position(int **tetra, t_data *data)
 		if (i == 4)
 			break ;
 		x = save_x;
-		x += tetra[i][1];
+		if (i > 0 && tetra[i -1][1] > tetra[i][1])
+			x -= tetra[i-1][1] - tetra[i][1];
+		else
+			x = (tetra[i][1] == x) ? x : x + tetra[i][1];
 		/* if (x >= data->map_size && i != 3) */
 		/* { */
 		/* 	data->map = data->map_saved; */
@@ -120,6 +123,7 @@ int		core(int ***tetra, t_data *data, int nbr)
 				{
 					printf("resultat final\n\n");
 					print_map(data->map);
+					/* print_data(tetra); */
 					exit(1);
 				}
 

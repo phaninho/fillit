@@ -25,6 +25,7 @@ int		main(int ac, char **av)
 
 	i = 0;
 	x = 0;
+	check = 0;
 	if (ac == 2 && (fd = open(av[1], O_RDONLY)) != -1)
 	{
 		buff = fill_buff(fd);
