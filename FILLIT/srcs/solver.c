@@ -6,7 +6,7 @@
 /*   By: jmaccion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 18:24:21 by jmaccion          #+#    #+#             */
-/*   Updated: 2016/01/20 18:48:26 by jmaccion         ###   ########.fr       */
+/*   Updated: 2016/01/23 11:52:37 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,41 @@ void	solver(int ***tetra)
 {
 	/* int		status; */
 	int		i;
+	int		j;
+	int		k;
+	int		larg;
+	int		all;
 	t_data	data;
 
 	if (!tetra)
 		return ;
 	i = 0;
+	larg = 2;
+	k = 1;
 	printf("HERE\n");
 	while (tetra && tetra[i])
+	{
+		j = 0;
+		while (j < 4)
+		{
+			if (tetra[i][j][0] == 4)
+			{
+				if (larg < 4)
+					larg = 4;
+				else if (i > 3)
+					larg = larg + 1;
+			}
+			j++;
+		}
 		i++;
-	set_data(&data, 2);
+	}
+	k = larg;
+	all = i * 4;
+	while (k * k < all)
+		k++;
+	printf("K: %d\n - all: %d", k, all);
+	/* exit(1); */
+	set_data(&data, k);
 	data.total_shapes = i;
 	data.map_saved = map_alloc(data.map, data.map_size, 0);
 	/* status = core(tetra, &data); */
