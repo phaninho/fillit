@@ -6,7 +6,7 @@
 /*   By: jmaccion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 18:24:21 by jmaccion          #+#    #+#             */
-/*   Updated: 2016/01/23 11:52:37 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/01/23 14:47:07 by jmaccion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,21 @@ void	set_data(t_data *data, int size)
 	data->letter = 'A';
 }
 
+int		get_height(int **tetra)
+{
+	int		i;
+	int		height;
+
+	i = 0;
+	height = 0;
+	while (i < 4 && tetra[i][0])
+	{
+		height++;
+		i++;
+	}
+	return (height);
+}
+
 void	solver(int ***tetra)
 {
 	/* int		status; */
@@ -27,6 +42,7 @@ void	solver(int ***tetra)
 	int		j;
 	int		k;
 	int		larg;
+	int		haut;
 	int		all;
 	t_data	data;
 
@@ -35,29 +51,52 @@ void	solver(int ***tetra)
 	i = 0;
 	larg = 2;
 	k = 1;
-	printf("HERE\n");
+	printf("SOLVER.C\n");
 	while (tetra && tetra[i])
 	{
 		j = 0;
-		while (j < 4)
+		printf("-- DEBUG 2\n");
+		while (tetra[i][j] && j < 4)
 		{
 			if (tetra[i][j][0] == 4)
 			{
 				if (larg < 4)
 					larg = 4;
 				else if (i > 3)
-					larg = larg + 1;
+				{
+					if (larg / 4 == 1)
+						larg = larg + 1;
+					else if (((larg % 4) == 0) && (larg / i) != 0)
+						larg = larg + 1;
+				}
 			}
 			j++;
 		}
 		i++;
 	}
-	k = larg;
+	i = 0;
+	printf("larg: %d\n", larg);
+	haut = get_height(tetra[0]);
+	/* printf("-- DEBUG 2\n"); */
+	while (tetra && tetra[i])
+	{
+		if (get_height(tetra[i]) == 4)
+		{
+			if (haut < 4)
+				haut = 4;
+			else if (i > 3)
+				haut++;
+		}
+		i++;
+	}
+	printf("haut: %d\n", haut);
+	/* exit(1); */
+	k = (larg > haut) ? larg : haut;
+	/* k = larg; */
 	all = i * 4;
 	while (k * k < all)
 		k++;
 	printf("K: %d\n - all: %d", k, all);
-	/* exit(1); */
 	set_data(&data, k);
 	data.total_shapes = i;
 	data.map_saved = map_alloc(data.map, data.map_size, 0);
