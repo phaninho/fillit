@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 18:48:34 by stmartin          #+#    #+#             */
-/*   Updated: 2016/01/24 23:29:02 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/01/25 20:59:33 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** Affiche la map recue en parametre sur la sortie standard
 */
 
-void	print_map(char **map)
+void			print_map(char **map)
 {
 	int		i;
 	int		j;
@@ -43,7 +43,7 @@ void	print_map(char **map)
 ** map et la memoire est liberee.
 */
 
-char		**assign_map_to_newmap(int i, int len, char **new_map, char **map)
+char			**assign_map_to_newmap(int i, int len, char **new_map, char **map)
 {
 	int		j;
 
@@ -60,7 +60,7 @@ char		**assign_map_to_newmap(int i, int len, char **new_map, char **map)
 	return (new_map);
 }
 
-char		**map_alloc(char **map, int size)
+char			**map_alloc(char **map, int size)
 {
 	int		i;
 	int		len;

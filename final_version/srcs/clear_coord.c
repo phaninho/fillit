@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 18:23:05 by stmartin          #+#    #+#             */
-/*   Updated: 2016/01/25 20:30:55 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/01/25 20:53:47 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void		clear_shapes(int ***shapes)
 void		clear_map(char **map)
 {
 	int		i;
-	
+
 	i = 0;
 	while (map && map[i])
 		free(map[i++]);

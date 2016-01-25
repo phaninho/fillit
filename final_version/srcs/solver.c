@@ -6,7 +6,7 @@
 /*   By: jmaccion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 18:24:21 by jmaccion          #+#    #+#             */
-/*   Updated: 2016/01/24 23:29:43 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/01/25 20:57:03 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static int		get_size_by_height(int ***shapes)
 	return (haut);
 }
 
-void	solver(int ***shapes)
+void			solver(int ***shapes)
 {
 	int		size_by_width;
 	int		size_by_height;

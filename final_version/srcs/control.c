@@ -6,7 +6,7 @@
 /*   By: jmaccion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/24 15:43:50 by jmaccion          #+#    #+#             */
-/*   Updated: 2016/01/24 21:56:49 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/01/25 20:58:22 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static t_coord	**set_value(t_coord **shapes, char *buff)
 	return (shapes);
 }
 
-static t_coord		**add_coord(char *buff)
+static t_coord	**add_coord(char *buff)
 {
 	t_coord		**coord;
 	size_t		i;
@@ -96,7 +96,7 @@ static t_coord		**add_coord(char *buff)
 	return (coord);
 }
 
-void	control(int ac, char **av, t_coord ***coord, int i)
+void			control(int ac, char **av, t_coord ***coord, int i)
 {
 	char	*buff;
 	char	*tmp;
