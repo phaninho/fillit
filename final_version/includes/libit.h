@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 17:45:57 by stmartin          #+#    #+#             */
-/*   Updated: 2016/01/24 23:17:06 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/01/27 21:04:13 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,27 @@ typedef struct		s_data
 }					t_data;
 
 // CONTROL
-void				control(int ac, char **av, t_coord ***coord, int i);
+void				control(int ac, char **av, t_coord ***coord, int *param);
+int					check_env_exec(int ac, char **av, char **buff, int *fd);
 int					check_valid(char *buff);
 int					check_diez(t_coord **coord, int x, int y, int valid);
 // SET DATA
+char				*fill_buff(int fd);
 int					***set_data(int ***shapes, t_coord **coord);
 int					**add_element(t_coord *cord);
 // SOLVER
-void				solver(int ***shapes);
-int					core(int ***shapes, t_data *data, int nbr, int status);
+void				solver(int ***shapes, int param);
+int					core(int ***shapes, t_data *data, int nbr, int param);
 // MAP HANDLING
-void				print_map(char **map);
-char				**map_alloc(char **map, int size);
+void				print_map(char **map, int param);
+char				**map_alloc(char **map, char ***oldmap, int size);
 // TOOL
 void	print_data(int ***shapes);
 // ERROR
-void				space_error(int i, char buff);
 void				ft_error(void);
+// CLEAR
+void				clean_tab2(char **tab);
+void				clean_tab3(int ***tab);
+void				clean_tab_t_coord(t_coord **coord);
+void				clear(t_data *data);
 #endif

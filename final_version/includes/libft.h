@@ -6,7 +6,7 @@
 /*   By: jmaccion <jmaccion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 14:52:28 by jmaccion          #+#    #+#             */
-/*   Updated: 2016/01/20 17:25:02 by jmaccion         ###   ########.fr       */
+/*   Updated: 2016/01/26 22:54:31 by jmaccion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <fcntl.h>
 
 # define C_NONE		"\033[0m"
-# define C_RED		"\033[1;91m"
+# define C_RED		"\033[1;40m"
 # define C_GREEN 	"\033[1;92m"
 # define C_YEL		"\033[1;93m"
 # define C_BLUE 	"\033[1;94m"

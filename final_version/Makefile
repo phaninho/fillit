@@ -9,12 +9,11 @@ FLAGS += -g
 
 LIB = build/libft.a 
 
-
-SRC += control.c
+SRC += control_part1.c
+SRC += control_part2.c
 SRC += set_data.c
+SRC += clean.c
 SRC += check_valid.c
-SRC += check_diez.c
-#SRC += diez_checking_tool.c
 SRC += add_element.c
 SRC += solver.c
 SRC += map_handling.c
@@ -22,6 +21,7 @@ SRC += core.c
 SRC += error.c
 SRC += main.c
 SRC += tool.c
+SRC += check_near_block.c
 SRC := $(addprefix srcs/, $(SRC))
 
 TEST = lst.c
