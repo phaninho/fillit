@@ -6,11 +6,34 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 16:28:40 by stmartin          #+#    #+#             */
-/*   Updated: 2016/01/24 23:57:36 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/01/27 11:52:32 by jmaccion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libit.h"
+
+static void		mode_pls_sous_la_couette(char *buff)
+{
+	char	**split;
+	int		i;
+	int		status;
+
+	i = 0;
+	status = 0;
+	split = ft_strsplit(buff, '\n');
+	while (split[i])
+	{
+		if (ft_strlen(split[i]) > 4)
+			status = 1;
+		i++;
+	}
+	i = 0;
+	while (split[i])
+		free(split[i++]);
+	free(split);
+	if (status)
+		ft_error();
+}
 
 static int		checkbuff(char *buff)
 {
@@ -21,6 +44,7 @@ static int		checkbuff(char *buff)
 	i = 0;
 	j = 0;
 	l = 0;
+	mode_pls_sous_la_couette(buff);
 	while (buff && buff[l])
 	{
 		if (i < 4 && ((buff[l] == '.') || (buff[l] == '#')))
@@ -50,7 +74,7 @@ int				check_valid(char *buff)
 		while (buff && buff[i])
 		{
 			if (buff[i] == '\n' && buff[i + 1] == '\n' && buff[i + 2] == '\n')
-				return (0);
+				break ;
 			if (buff[i] == '#')
 				diez++;
 			i++;
@@ -58,5 +82,7 @@ int				check_valid(char *buff)
 		if (diez == 4)
 			return (1);
 	}
+	free(buff);
+	ft_error();
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jmaccion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/24 16:16:42 by jmaccion          #+#    #+#             */
-/*   Updated: 2016/01/24 21:04:49 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/01/27 14:48:12 by jmaccion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,42 +44,31 @@ static int			check_spacey(t_coord *coord)
 	return (spacey);
 }
 
-t_coord				*tool_init_tet(t_coord *coord, int y, int spx, int spy)
-{
-	while (spx < 1)
-	{
-		while (y != 4)
-		{
-			coord[y].x = coord[y].x - 1;
-			if (coord[y].x == 0)
-				spx++;
-			y++;
-		}
-		y = 0;
-	}
-	y = 0;
-	while (spy < 1)
-	{
-		while (y < 4)
-		{
-			coord[y].y = coord[y].y - 1;
-			if (coord[y].y == 0)
-				spy++;
-			y++;
-		}
-		y = 0;
-	}
-	return (coord);
-}
-
 static t_coord		*init_tet(t_coord *coord, int y)
 {
-	int		spacex;
-	int		spacey;
+	int	spacex;
+	int	spacey;
 
 	spacex = check_spacex(coord);
 	spacey = check_spacey(coord);
-	coord = tool_init_tet(coord, y, spacex, spacey);
+	while (spacex < 1)
+	{
+		y = 0;
+		while (y != 4)
+		{
+			coord[y].x = coord[y].x - 1;
+			(coord[y++].x == 0) ? spacex++ : 1;
+		}
+	}
+	while (spacey < 1)
+	{
+		y = 0;
+		while (y < 4)
+		{
+			coord[y].y = coord[y].y - 1;
+			(coord[y++].y == 0) ? spacey++ : 1;
+		}
+	}
 	return (coord);
 }
 
@@ -102,5 +91,6 @@ int					***set_data(int ***shapes, t_coord **coord)
 		shapes[x] = add_element(coord[x]);
 		x++;
 	}
+	clean_tab_t_coord(coord);
 	return (shapes);
 }

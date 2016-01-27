@@ -3,31 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   map_handling.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jmaccion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/18 18:48:34 by stmartin          #+#    #+#             */
-/*   Updated: 2016/01/25 20:59:33 by stmartin         ###   ########.fr       */
+/*   Created: 2016/01/27 05:09:52 by jmaccion          #+#    #+#             */
+/*   Updated: 2016/01/27 15:01:53 by jmaccion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libit.h"
+#define DEB		"\033[48;5;"
+#define FIN		"m  \033[0m"
+#define TAB	"1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;18;23;33;51;82;105;196;202;214;223;225;226"
 
-/*
-** Affiche la map recue en parametre sur la sortie standard
-*/
-
-void			print_map(char **map)
+static void			basic_output(char **pattern)
 {
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	while (map && map[i])
+	while (pattern && pattern[i])
 	{
-		while (map[i][j])
+		while (pattern[i][j])
 		{
-			ft_putchar(map[i][j]);
+			ft_putchar(pattern[i][j]);
 			ft_putchar(' ');
 			j++;
 		}
@@ -37,38 +36,75 @@ void			print_map(char **map)
 	}
 }
 
-/*
-** Cree une nouvelle map a la bonne taille
-** Si une map existait auparavant, ses donnees sont copiees dans la nouvelle
-** map et la memoire est liberee.
-*/
-
-char			**assign_map_to_newmap(int i, int len, char **new_map, char **map)
-{
-	int		j;
-
-	if (i < len && map && map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			new_map[i][j] = map[i][j];
-			j++;
-		}
-		/* free(map[i]); */
-	}
-	return (new_map);
-}
-
-char			**map_alloc(char **map, int size)
+static void			stylised_output(char **pattern)
 {
 	int		i;
+	int		j;
+	int		size_map;
+	char	**tmp;
+
+	i = 0;
+	j = 0;
+	size_map = (pattern && pattern[0]) ? ft_strlen(pattern[0]) : 0;
+	tmp = ft_strsplit(TAB, ';');
+	while (i++ <= size_map + 1)
+		ft_putstr("\033[48;5;137m  \033[0m");
+	ft_putchar('\n');
+	i = 0;
+	while (pattern && pattern[i])
+	{
+		ft_putstr("\033[48;5;137m  \033[0m");
+		while (pattern[i][j])
+		{
+			if (pattern[i][j] != '.')
+			{
+				ft_putstr(DEB);
+				ft_putstr(tmp[(pattern[i][j] - 'A')]);
+				ft_putstr(FIN);
+			}
+			else
+				ft_putstr("  ");
+			j++;
+		}
+		i++;
+		j = 0;
+		ft_putstr("\033[48;5;137m  \033[0m\n");
+	}
+	size_map += 2;
+	while (size_map--)
+		ft_putstr("\033[48;5;137m  \033[0m");
+	ft_putchar('\n');
+	clean_tab2(tmp);
+}
+
+/*
+** Affiche la pattern recue en parametre sur la sortie standard
+*/
+
+void				print_map(char **pattern, int param)
+{
+	if (param)
+		stylised_output(pattern);
+	else
+		basic_output(pattern);
+}
+
+/*
+** Cree une nouvelle pattern a la bonne taille
+** Si une pattern existait auparavant, ses donnees sont copiees dans la nouvelle
+** pattern et la memoire est liberee.
+*/
+
+char				**map_alloc(char **pattern, char ***old_map, int size)
+{
+	int		i;
+	int		j;
 	int		len;
 	char	**new_map;
 
 	i = 0;
 	len = 0;
-	while (map && map[0][len])
+	while (pattern && pattern[0] && pattern[0][len])
 		len++;
 	if (!(new_map = (char **)malloc(sizeof(char *) * (size + 1))))
 		ft_error();
@@ -79,10 +115,21 @@ char			**map_alloc(char **map, int size)
 			ft_error();
 		new_map[i][size] = '\0';
 		ft_memset(new_map[i], '.', size);
-		new_map = assign_map_to_newmap(i, len, new_map, map);
+		if (i < len && pattern && pattern[i])
+		{
+			j = 0;
+			while (j < len && pattern[i][j])
+			{
+				new_map[i][j] = pattern[i][j];
+				j++;
+			}
+		}
 		i++;
 	}
-	/* if (map) */
-	/* 	free(map); */
+	if (old_map)
+	{
+		clean_tab2(*old_map);
+		*old_map = NULL;
+	}
 	return (new_map);
 }
