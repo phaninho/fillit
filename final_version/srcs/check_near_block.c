@@ -31,12 +31,8 @@ int			matching_test(t_coord **coord, int x, int y, int i)
 
 int				check_near_block(t_coord **coord, int x, int y, int i)
 {
-	int		diffx;
-	int		diffy;
 	int		nbr_match;
 
-	diffx = 0;
-	diffy = 0;
 	nbr_match = 0;
 	while (coord && coord[i])
 	{
