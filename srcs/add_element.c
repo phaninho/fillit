@@ -6,12 +6,12 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/10 16:17:26 by stmartin          #+#    #+#             */
-/*   Updated: 2016/01/13 16:18:15 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/01/27 05:05:22 by jmaccion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libit.h"
-#include<stdio.h>
+
 int		blk_in_line(t_coord *coord, int line)
 {
 	int		i;
@@ -44,6 +44,7 @@ int		get_minx(t_coord *coord, int mode)
 	}
 	return (min);
 }
+
 int		**add_element(t_coord *coord)
 {
 	int		i;

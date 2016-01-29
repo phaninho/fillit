@@ -6,7 +6,7 @@
 /*   By: jmaccion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 17:42:16 by jmaccion          #+#    #+#             */
-/*   Updated: 2015/12/21 22:13:36 by jmaccion         ###   ########.fr       */
+/*   Updated: 2016/01/08 17:07:42 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "libft.h"
 # include <fcntl.h>
 # include <stdio.h>
-
 
 typedef struct	s_coord
 {

@@ -6,78 +6,107 @@
 /*   By: jmaccion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 18:24:21 by jmaccion          #+#    #+#             */
-/*   Updated: 2016/01/23 11:52:37 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/01/27 12:02:24 by jmaccion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libit.h"
 
-void	set_data(t_data *data, int size)
+static void		init_data(t_data *data, int size)
 {
 	ft_memset(data, 0, sizeof(data));
-	data->map = map_alloc(data->map, size, 1);
+	data->map = map_alloc(data->map, &(data->map), size);
 	data->map_size = size;
 	data->letter = 'A';
 }
 
-void	solver(int ***tetra)
+static int		get_height(int **shapes)
 {
-	/* int		status; */
+	int		i;
+	int		height;
+
+	i = 0;
+	height = 0;
+	while (i < 4 && shapes[i][0])
+	{
+		height++;
+		i++;
+	}
+	return (height);
+}
+
+static int		get_size_by_width(int ***shapes)
+{
 	int		i;
 	int		j;
-	int		k;
 	int		larg;
-	int		all;
-	t_data	data;
 
-	if (!tetra)
-		return ;
 	i = 0;
 	larg = 2;
-	k = 1;
-	printf("HERE\n");
-	while (tetra && tetra[i])
+	while (shapes && shapes[i])
 	{
 		j = 0;
-		while (j < 4)
+		while (j < 4 && shapes[i][j])
 		{
-			if (tetra[i][j][0] == 4)
+			if (shapes[i][j++][0] == 4)
 			{
-				if (larg < 4)
-					larg = 4;
-				else if (i > 3)
-					larg = larg + 1;
+				larg = (larg < 4) ? 4 : larg;
+				if (i > 3)
+				{
+					larg = (larg / 4 == 1) ? larg + 1 : larg;
+					if (((larg % 4) == 0) && (larg / i) != 0)
+						larg = larg + 1;
+				}
 			}
-			j++;
 		}
 		i++;
 	}
-	k = larg;
-	all = i * 4;
-	while (k * k < all)
-		k++;
-	printf("K: %d\n - all: %d", k, all);
-	/* exit(1); */
-	set_data(&data, k);
+	return (larg);
+}
+
+static int		get_size_by_height(int ***shapes)
+{
+	int		i;
+	int		haut;
+
+	i = 0;
+	haut = get_height(shapes[0]);
+	while (shapes && shapes[i])
+	{
+		if (get_height(shapes[i]) == 4)
+		{
+			if (haut < 4)
+				haut = 4;
+			else if (i > 3)
+				haut++;
+		}
+		i++;
+	}
+	return (haut);
+}
+
+void			solver(int ***shapes, int param)
+{
+	int		size_by_width;
+	int		size_by_height;
+	int		coeff;
+	int		i;
+	t_data	data;
+
+	if (!shapes)
+		return ;
+	i = 0;
+	size_by_width = get_size_by_width(shapes);
+	size_by_height = get_size_by_height(shapes);
+	coeff = (size_by_width > size_by_height) ? size_by_width : size_by_height;
+	while (shapes[i])
+		i++;
+	while (coeff * coeff < i * 4)
+		coeff++;
+	init_data(&data, coeff);
 	data.total_shapes = i;
-	data.map_saved = map_alloc(data.map, data.map_size, 0);
-	/* status = core(tetra, &data); */
-	core(tetra, &data, 0);
-	/* while (status == 1) */
-	/* { */
-	/* 	ft_putstr(C_YEL); */
-	/* 	printf("  ---------- \n"); */
-	/* 	printf("NEW MAP_SIZE: %d\n", (data.map_size + 1)); */
-	/* 	printf("  ---------- \n"); */
-	/* 	ft_putstr(C_NONE); */
-	/* 	data.map_size++; */
-	/* 	data.map = map_alloc(data.map, data.map_size, 1); */
-	/* 	data.map_saved = map_alloc(data.map, data.map_size, 0); */
-	/* 	#<{(| printf("-- START --\n"); |)}># */
-	/* 	#<{(| print_map(data.map_saved); |)}># */
-	/* 	#<{(| printf("-- END --\n"); |)}># */
-	/* 	status = core(tetra, &data); */
-	/* 	#<{(| printf("-- Status: %d\n", status); |)}># */
-	/* } */
-	print_map(data.map);
+	data.map_saved = map_alloc(data.map, NULL, data.map_size);
+	core(shapes, &data, 0, param);
+	clean_tab2(data.map);
+	clean_tab2(data.map_saved);
 }

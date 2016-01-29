@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 17:45:57 by stmartin          #+#    #+#             */
-/*   Updated: 2016/01/10 20:46:01 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/01/28 12:01:13 by jmaccion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 # include "libft.h"
 # include <fcntl.h>
-#include <stdlib.h>
+# include <stdlib.h>
 
-#define BUFF_SIZE 10
+# define BUFF_SIZE 130
 
 typedef struct		s_coord
 {
@@ -25,17 +25,73 @@ typedef struct		s_coord
 	int	y;
 }					t_coord;
 
-typedef struct		s_map
+typedef struct		s_data
 {
-	int	start;
-	int	nb;
-}					t_map;
+	char	**map;
+	char	**map_saved;
+	int		map_size;
+	int		coord[2];
+	char	letter;
+	int		total_shapes;
+	int		nb_placed;
+}					t_data;
 
-int					checkbuff(char *buff);
+/*
+** CONTROL
+*/
+
+void				control(int ac, char **av, t_coord ***coord, int *param);
+int					check_env_exec(int ac, char **av, char **buff, int *fd);
 int					check_valid(char *buff);
-t_coord				**add_coord(char *buff, size_t i, int x, int y);
+int					check_diez(t_coord **coord);
+
+/*
+** SET DATA
+*/
+
 char				*fill_buff(int fd);
-int					check_diez(t_coord **coord, int x, int y, int valid);
-t_coord				*init_tet(t_coord *coord, int y);
-int				**add_element(t_coord *coord);
+int					***set_data(int ***shapes, t_coord **coord);
+int					**add_element(t_coord *cord);
+
+/*
+** SOLVER
+*/
+
+void				solver(int ***shapes, int param);
+int					core(int ***shapes, t_data *data, int nbr, int param);
+
+/*
+** MAP HANDLING
+*/
+
+void				print_map(char **map, int param);
+char				**map_alloc(char **map, char ***oldmap, int size);
+
+/*
+** PRINT
+*/
+
+void				stylised_output(char **pattern);
+
+/*
+** TOOL
+*/
+
+void				print_data(int ***shapes);
+
+/*
+** ERROR
+*/
+
+void				ft_error(void);
+
+/*
+** CLEAR
+*/
+
+void				clean_tab2(char **tab);
+void				clean_tab3(int ***tab);
+void				clean_tab_t_coord(t_coord **coord);
+int					clear_data(t_data *data, char **local_map,
+		int param, int mode);
 #endif

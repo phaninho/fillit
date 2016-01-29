@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 18:34:25 by stmartin          #+#    #+#             */
-/*   Updated: 2016/01/13 17:55:09 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/01/29 14:42:59 by jmaccion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,63 +14,16 @@
 
 int		main(int ac, char **av)
 {
-	int			fd;
-	char		*buff;
-	int			i;
-	int			check;
-	char		*tmp;
 	t_coord		**coord;
-	int			x;
-	int		***tetra;
+	int			***shapes;
+	int			param;
 
-	i = 0;
-	x = 0;
-	if (ac == 2 && (fd = open(av[1], O_RDONLY)) != -1)
-	{
-		buff = fill_buff(fd);
-		while (buff && buff[i])
-		{
-			tmp = ft_strsub(buff, i, 21);
-			i += ft_strlen(tmp);
-			if ((ft_strlen(tmp) == 20 && buff[i] =='\0') || 
-					(ft_strlen(tmp) == 21 && buff[i] != '\0'))
-				check = check_valid(tmp);
-			else
-				check = 0;
-		}
-		if (check == 1)
-		{
-			coord = add_coord(buff, 0, 0, 0);
-			check = check_diez(coord, 0, 0, 0);
-		}
-		if (check == 1)
-		{
-			while (coord && coord[x])
-			{
-				coord[x] = init_tet(coord[x], 0);
-				x++;
-			}
-			if (!(tetra = (int ***)malloc(sizeof(int **) * (x + 1))))
-				return 0;
-			tetra[x] = 0;
-			x = 0;
-			while (coord && coord[x])
-			{
-				tetra[x] = add_element(coord[x]);
-				join_tetra(tetra[x]);
-				x++;
-			}
-			return (1);
-		}
-		else
-		{
-			ft_putstr("error\n");
-			return (0);
-		}
-	}
-	else
-	{
-		ft_putstr("error\n");
-		return (0);
-	}
+	param = 0;
+	coord = NULL;
+	shapes = NULL;
+	control(ac, av, &coord, &param);
+	shapes = set_data(shapes, coord);
+	solver(shapes, param);
+	clean_tab3(shapes);
+	return (0);
 }
