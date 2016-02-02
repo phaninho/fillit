@@ -6,11 +6,12 @@
 /*   By: jmaccion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 18:24:21 by jmaccion          #+#    #+#             */
-/*   Updated: 2016/01/27 12:02:24 by jmaccion         ###   ########.fr       */
+/*   Updated: 2016/02/02 17:18:40 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libit.h"
+#include <stdio.h>
 
 static void		init_data(t_data *data, int size)
 {
@@ -48,15 +49,13 @@ static int		get_size_by_width(int ***shapes)
 		j = 0;
 		while (j < 4 && shapes[i][j])
 		{
+			if (i > 7)
+				larg = 6;
 			if (shapes[i][j++][0] == 4)
 			{
 				larg = (larg < 4) ? 4 : larg;
-				if (i > 3)
-				{
-					larg = (larg / 4 == 1) ? larg + 1 : larg;
-					if (((larg % 4) == 0) && (larg / i) != 0)
-						larg = larg + 1;
-				}
+				if (i > 3 && i < 7)
+					larg++;
 			}
 		}
 		i++;
