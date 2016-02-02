@@ -48,12 +48,10 @@ static void			print(char **pattern, char **tmp)
 void				stylised_output(char **pattern)
 {
 	int		i;
-	int		j;
 	int		size_map;
 	char	**tmp;
 
 	i = 0;
-	j = 0;
 	size_map = (pattern && pattern[0]) ? ft_strlen(pattern[0]) : 0;
 	tmp = ft_strsplit(TAB, ';');
 	while (i++ <= size_map + 1)
