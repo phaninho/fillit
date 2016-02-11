@@ -4,7 +4,7 @@ void	usage_error(int ac)
 {
 	if (ac == 1)
 	{
-		ft_putstr("fillit: operande de fichier manquant\nSaisissez «./fillit tetriminos_fille»\nSaisissez «./fillit --beautiful-map tetriminos_file» pour afficher la map en couleur\n");
+		ft_putstr("usage: fillit map_file [--beatuful-map]\n");
 		exit (1);
 	}
 }
