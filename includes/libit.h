@@ -84,6 +84,7 @@ void				print_data(int ***shapes);
 */
 
 void				ft_error(void);
+void				usage_error(int ac);
 
 /*
 ** CLEAR

@@ -32,6 +32,7 @@ SRC += map_handling.c
 SRC += core.c
 SRC += error.c
 SRC += main.c
+SRC += usage_error.c
 # SRC += tool.c
 SRC := $(addprefix srcs/, $(SRC))
 
@@ -44,7 +45,7 @@ NONE = "\033[0m"
 
 all: $(OBJ_SRC)
 	echo "-- Creating $(NAME) ..."
-	$(CC) $(FLAGS) $^ $(LIB) -o bin/$(NAME)
+	$(CC) $(FLAGS) $^ $(LIB) -o $(NAME)
 	echo $(GREEN)"Done."$(NONE)
 
 %.o:%.c
@@ -52,12 +53,12 @@ all: $(OBJ_SRC)
 
 clean:
 	echo "-- Cleaning .o files ..."
-	/bin/rm -f $(OBJ_SRC)
+	rm -f $(OBJ_SRC)
 	echo $(GREEN)"Done."$(NONE)
 
 fclean: clean
 	echo "-- Removing binary ..."
-	/bin/rm -f ./bin/$(NAME)
+	rm -f ./$(NAME)
 	echo $(GREEN)"Done."$(NONE)
 
 re: fclean all

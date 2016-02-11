@@ -21,6 +21,7 @@ int		main(int ac, char **av)
 	param = 0;
 	coord = NULL;
 	shapes = NULL;
+	usage_error(ac);
 	control(ac, av, &coord, &param);
 	shapes = set_data(shapes, coord);
 	solver(shapes, param);
