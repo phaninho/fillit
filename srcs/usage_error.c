@@ -4,7 +4,7 @@ void	usage_error(int ac)
 {
 	if (ac == 1)
 	{
-		ft_putstr("usage: fillit map_file [--beatuful-map]\n");
+		ft_putstr("usage: fillit map_file [--beautiful-map]\n");
 		exit (1);
 	}
 }
