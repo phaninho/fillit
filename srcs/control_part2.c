@@ -78,7 +78,10 @@ int						check_env_exec(int ac, char **av, char **buff, int *fd)
 			|| (ac == 3 && ft_strcmp(av[1], "--beautiful-map"))
 			|| (*fd = open((ac == 3) ? av[2] : av[1], O_RDONLY)) == -1
 			|| (!(*buff = fill_buff(*fd))))
+	{
 		ft_error();
+		return (0);
+	}
 	if (ac == 3 && !ft_strcmp(av[1], "--beautiful-map"))
 		return (1);
 	else
